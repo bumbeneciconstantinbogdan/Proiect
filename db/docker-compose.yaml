@@ -1,0 +1,67 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: arm64v8/mysql:oracle
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - proiect_default
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+ 
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - proiect_default
+    ports:
+      - 8080:8080
+
+  
+  mongo:
+    image: mongo
+    restart: always
+    networks:
+      - proiect_default
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=root
+    #   - MONGO_INITDB_ROOT_PASSWORD=example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    networks:
+      - proiect_default
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
+
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    networks:
+    - proiect_default
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+    - 9999:8080
+
+  # portainer:
+  #   container_name: portainer
+  #   image: portainer/portainer:alpine
+  #   networks:
+  #     - proiect_default
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - portainer_data:/data portainer/portainer-ce
+  #   ports:
+  #     - 9998:9000
+    
+        
+networks:
+  proiect_default:
+    name: proiect_default
+    driver: bridge

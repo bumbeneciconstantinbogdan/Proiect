@@ -1,0 +1,100 @@
+
+
+
+<div>
+    
+  
+    <br>
+</div>
+
+<div *ngIf="isAdmin()" class="card" style="width: 100%;">
+    <div class="card-body">
+    
+      <h5 class="card-title">Plant </h5>
+      <h6 class="card-subtitle "> <hr> Plant Id: {{_selectedPlantCopy.id}} <hr> Nominal power: {{+_selectedPlantCopy.power*1000}} kW  /  Actual power: {{(+_selectedPlantCopy.actualPower/1000).toPrecision(5)}} kW <hr> Status: {{_selectedPlantCopy.onlineStatus}} </h6>
+      <hr class="solid">
+        <form class="card-text">
+            <label for="plantName">Plant name:</label>
+            <input type="text" id="plantName" name="plantName" [(ngModel)]="_selectedPlantCopy.name"><br>
+            <p class="formfield">
+                <label for="plantDescription">Plant description:</label>
+                <textarea name="plantDescription" id="plantDescription" cols="30" rows="2" [(ngModel)]="_selectedPlantCopy.description"></textarea>
+            </p>
+            <label for="link">Endpoint: </label>
+            <input type="text" id="link" name="link" [(ngModel)]="_selectedPlantCopy.link" ><br>
+          </form>
+      <a  class="card-link" (click)="updatePlantByName({name : _selectedPlantCopy.name, description : _selectedPlantCopy.description, power : _selectedPlantCopy.power , actualPower : _selectedPlantCopy.actualPower , link: _selectedPlantCopy.link} )" routerLink="">Update</a>
+
+      <div *ngIf="getIsError() || getSuccesUpdated()"><br></div>
+
+      <div *ngIf="getSuccesUpdated()"  class="cross-validation-error-message alert alert-success">
+        Plant updated 
+    </div>
+    <div  *ngIf="getIsError()" class="cross-validation-error-message alert alert-danger">
+        There was an error
+    </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="!isAdmin()" class="card" style="width: 100%;">
+    <div class="card-body">
+      <h5 class="card-title">Plant </h5>
+      <h6 class="card-subtitle "> <hr> Plant name: {{_selectedPlantCopy.name}}  <hr> Plant description: {{_selectedPlantCopy.description}}   <hr>  Nominal power: {{+_selectedPlantCopy.power*1000}} kW  /  Actual power: {{(+_selectedPlantCopy.actualPower/1000).toPrecision(5)}} kW <hr>  Status: {{_selectedPlantCopy.onlineStatus}}  </h6>
+    </div>
+  </div>
+
+
+<div>
+    <br>
+    <h1>Statistics</h1>
+    <br>
+   
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Energy</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Total production</h6>
+          <p class="card-text">
+            Today: {{(getEnergy().todayEnergy * 1e-3).toPrecision(7)}} kWh
+            <br>
+            {{getThisYear()}} : {{(getEnergy().thisYearTotalEnergy * 1e-6).toPrecision(7)}} MWh
+          </p>
+          <!-- <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a> -->
+        </div>
+      </div>
+    <br>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-chart-line me-1"></i>
+            Today Current & Voltage
+        </div>
+        <div class="card-body"><canvas id="myChartCurrentAndVoltage" width="100%" height="35"></canvas></div>
+    </div>
+    <br>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-chart-bar me-1"></i>
+            Today Power Factor
+        </div>
+        <div class="card-body"><canvas id="myChartPowerFactor" width="100%" height="35"></canvas></div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-chart-area me-1"></i>
+            Today Power
+        </div>
+        <div class="card-body"><canvas id="myAreaChartPower" width="100%" height="35"></canvas></div>
+        <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-chart-bar me-1"></i>
+            This year Contribution
+        </div>
+        <div class="card-body"><canvas id="myChartYearContribution" width="100%" height="35"></canvas></div>
+        <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+    </div>
+</div>

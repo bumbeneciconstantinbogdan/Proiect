@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  plant-server-2:
+    image: plant-simulation-service:1.0
+    restart: always
+    networks:
+      - proiect_default
+    environment:
+     - PLANT_SERVICE_NAME=plant-2
+     - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+     - PLANT_SERVICE_PORT=9002
+     - PLANT_REGISTRY_URL=http://discovery-server:8761
+     - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/plant-2
+
+
+networks:
+  proiect_default:
+    name: proiect_default
+    driver: bridge
+  

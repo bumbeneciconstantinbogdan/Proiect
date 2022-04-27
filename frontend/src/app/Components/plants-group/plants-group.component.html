@@ -1,0 +1,15 @@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col selected" *ngFor="let plant of getPlants()">
+        <a class="card " (click)="selectPlant(plant)" routerLink="/">
+            <img src="https://images8.alphacoders.com/550/thumb-1920-550542.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{plant.name}}</h5>
+                <p class="card-text">{{plant.description.substring(0, 30) + ' ...'}}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">{{plant.onlineStatus}}</small>
+            </div>
+        </a>
+    </div>
+</div>
+<br>

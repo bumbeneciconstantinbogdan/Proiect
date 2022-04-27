@@ -1,0 +1,22 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: EUREKA-SERVER
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+    url: jdbc:mysql://localhost:3306/plants?createDatabaseIfNotExist=true
+    username: root
+    password: example
+  jpa:
+    hibernate.ddl-auto: create-drop
+    generate-ddl: true
+    show-sql: false
+      
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+

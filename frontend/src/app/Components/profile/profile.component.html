@@ -1,0 +1,16 @@
+<div class="card" style="width: 100%;">
+    <div class="card-body">
+        <h5 class="card-title">Account info <hr> </h5>
+        <h6 class="card-subtitle">
+            <ul>
+                <li>Username: {{getCurrentUser().username}} <hr></li>
+                <!-- <li>Password: {{getCurrentUser().password}}</li> -->
+                <li>Email: {{getCurrentUser().email}} <hr></li>
+                <li>Account authorities: <ul>
+                        <li *ngFor="let auth of getCurrentUser().authorities">{{auth.authority}}</li>
+                    </ul>
+                </li>
+            </ul>
+        </h6>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div>
+    <h1>Statistics</h1>
+    <br>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie me-1"></i>
+                    Daily production
+                </div>
+                <div class="card-body"><canvas id="myDaily" width="90%" height="35"></canvas></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie me-1"></i>
+                    Yearly production
+                </div>
+                <div class="card-body">
+                    <canvas id="myYearly" width="90%" height="35"></canvas>
+                    <div class="label-text">Total production <br> {{getYearlyEnergy().toPrecision(3) + ' GWh'}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+button{
+    background-color: #42545C;
+    color: white;
+}
+
+button :hover{
+    background-color: #740b28;
+    color: white;
+    animation-duration: 0.35s;
+}
+
+#divChart{
+    display: block;
+    width: 400px;
+    height: 4000px;
+}
+
+  input[type=text], textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+  
+
+

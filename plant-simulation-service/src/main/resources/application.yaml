@@ -1,0 +1,25 @@
+server:
+    port: ${PLANT_SERVICE_PORT}
+    error:
+      include-binding-errors: always
+      include-message: always
+
+spring:
+   application:
+      name: ${PLANT_SERVICE_NAME}
+   main:
+      web-application-type: reactive
+   data:
+      mongodb:
+        database: ${PLANT_SERVICE_NAME}
+        uri: mongodb://localhost:27017/${PLANT_SERVICE_NAME}
+
+eureka:
+    client:
+        register-with-eureka: true
+        fetch-registry: true
+        service-url:
+            defaultZone: http://localhost:8761/eureka
+    instance:
+        hostname: localhost
+
